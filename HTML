@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title> Visit Card (Glassmorphism) </title>
+    <link href="VisitCard.css" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="card">
+             <div class="face back">
+                <div class="skill">
+                    <h3>Mes Compétences</h3>
+                    <li>
+                        <h4>HTML</h4><span class="bar"><span class="HTML"></span></span>
+                    </li>
+                    <li>
+                        <h4>CSS</h4><span class="bar"><span class="CSS"></span></span>
+                    </li>
+                    <li>
+                        <h4>JavaScript</h4><span class="bar"><span class="JavaScript"></span></span>
+                    </li>
+                    <li>
+                        <h4>PHP</h4><span class="bar"><span class="PHP"></span></span>
+                    </li>
+                </div>    
+            </div>
+            <div class="face front">
+                    <div class="content">
+                        <div class="picture"><img src="PhotoIDOrange.png" width="100px" height="150px"></div>
+                        <div class="contentbox">
+                            <h3>Alexandre CLER<br><span>Developpeur Web Junior </span></h3>
+                            <a href=""> Compétences </a>
+                            <a href="CV_Alexandre.CLER.pdf"> À propos </a>
+                        </div>
+                    </div>
+                <ul class="network">
+                    <li>
+                        <a href="https://www.linkedin.com/feed/"><ion-icon name="logo-linkedin"></ion-icon></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/alex-cler"><ion-icon name="logo-github"></ion-icon></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/alexandre_cler/?hl=fr"><ion-icon name="logo-instagram"></ion-icon></a>
+                    </li>
+                </ul>
+            </div>
+           
+        </div>                    
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script type="text/javascript">
+        // Ajout de la classe au lien pour retourner
+        document.querySelector( ".card .face.front .contentbox > a:first-of-type" ).classList.add( "fliptoggle" )
+        // Ajout du lien pour retourner sur le back
+        document.querySelector( ".card .face.back .skill" ).innerHTML += `<a href="" class="fliptoggle"><ion-icon name="return-down-back-outline"></ion-icon></a>`;
+
+        // Code pour retourner la carte avec les liens
+        document.querySelectorAll( "a.fliptoggle" ).forEach( a => {
+            a.addEventListener( "click", e => {
+                e.preventDefault();
+                document.querySelector( "body > section > .card" ).classList.toggle( "flipped" )
+            } )
+        } )
+    </script>
+
+    <style>
+        
+        /* Animations */
+        .HTML,
+        .CSS,
+        .JavaScript,
+        .PHP {
+            animation: none;
+        }
+        /* Preserve 3d */
+        .card,
+        .card .face {
+            transform-style: flat;
+        }
+        /* Perspective */
+        .card {
+            perspective: none;
+        }
+
+        /* -- Hidden Face -- */
+        /* Hidden */
+        .card:not( .flipped ) .face.back {
+            transform: rotateY( -90deg );
+            transition-timing-function: linear;
+        }
+        /* Display */
+        .card.flipped .face.back {
+            transition-delay: 1s;
+            transition-timing-function: linear;
+        }
+        /* Animations when visible */
+        .card.flipped .face.back .HTML {
+            animation: HTML 3s 1s;
+        }
+
+        .card.flipped .face.back .CSS {
+            animation: CSS 3s 1s;
+        }
+
+        .card.flipped .face.back .JavaScript {
+            animation: JavaScript 3s 1s;
+        }
+
+        .card.flipped .face.back .PHP {
+            animation: PHP 3s 1s;
+        }
+
+        /* -- Visible face -- */
+        /* hidden */
+        .card.flipped .face.front {
+            transform: rotateY( 90deg );
+            transition-timing-function: linear;
+        }
+        /* show */
+        .card:not( .flipped ) .face.front {
+            transition-delay: 1s;
+            transition-timing-function: linear;
+        }
+    </style>
+</body>
+</html>
